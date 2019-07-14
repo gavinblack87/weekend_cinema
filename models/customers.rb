@@ -38,16 +38,16 @@ def save()
       return Film.map_items(film_data)
   end
 
-  def tickets()
-      sql = "SELECT tickets.*
-      FROM tickets
-      INNER JOIN films
-      ON films.ticket_id = tickets.id
-      WHERE customer_id = $1"
-      values = [@id]
-      ticket_data = SqlRunner.run(sql, values)
-      return Film.map_items(ticket_data)
-  end
+  # def tickets()
+  #     sql = "SELECT tickets.*
+  #     FROM tickets
+  #     INNER JOIN films
+  #     ON films.ticket_id = tickets.id
+  #     WHERE customer_id = $1"
+  #     values = [@id]
+  #     ticket_data = SqlRunner.run(sql, values)
+  #     return Ticket.map_items(ticket_data)
+  # end
 
   def update()
     sql = "

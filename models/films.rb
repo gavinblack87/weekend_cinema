@@ -38,6 +38,10 @@ def save()
     return Customer.map_items(customer_data)
   end
 
+  def customer_count()
+    return customers.count
+  end
+
   # def tickets()
   #
   # end
