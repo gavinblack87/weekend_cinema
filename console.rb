@@ -13,9 +13,9 @@ customer1.save()
 customer2 = Customer.new({'name' => 'Amy', 'funds' => '222'})
 customer2.save()
 
-film1 = Film.new({'name' => 'James Bond', 'price' => '10'})
+film1 = Film.new({'title' => 'James Bond', 'price' => '10'})
 film1.save()
-film2 = Film.new({'name' => 'Gladiator', 'price' => '20'})
+film2 = Film.new({'title' => 'Gladiator', 'price' => '20'})
 film2.save()
 
 ticket1 = Ticket.new({'customer_id' => customer1.id, 'film_id' => film1.id})

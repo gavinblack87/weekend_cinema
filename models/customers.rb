@@ -8,7 +8,7 @@ attr_accessor :name, :funds
 def initialize(options)
   @id = options['id'].to_i if options['id']
   @name = options['name']
-  @funds = options['funds'].to_i if options['id']
+  @funds = options['funds'].to_i
 end
 
 def save()
@@ -26,6 +26,17 @@ def save()
     customer = SqlRunner.run( sql, values ).first
     @id = customer['id'].to_i
   end
+
+  def films()
+      sql = "SELECT films.*
+      FROM films
+      INNER JOIN tickets
+      ON tickets.film_id = films.id
+      WHERE customer_id = $1"
+      values = [@id]
+      film_data = SqlRunner.run(sql, values)
+      return Ticket.map_items(film_data)
+    end
 
   def update()
     sql = "
@@ -51,6 +62,11 @@ def save()
   def self.delete_all()
    sql = "DELETE FROM customers"
    SqlRunner.run(sql)
+  end
+
+  def self.map_items(customer_data)
+    result = customer_data.map { |customer| Customer.new( customer ) }
+    return result
   end
 
 end
