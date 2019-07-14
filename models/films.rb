@@ -8,7 +8,7 @@ attr_accessor :title, :price
 def initialize(options)
   @id = options['id'].to_i if options['id']
   @title = options['title']
-  @price = options['price'].to_i if options['id']
+  @price = options['price'].to_i
 end
 
 def save()
@@ -38,6 +38,10 @@ def save()
     return Customer.map_items(customer_data)
   end
 
+  # def tickets()
+  #
+  # end
+
   def update()
     sql = "
     UPDATE films SET (
@@ -60,6 +64,11 @@ def save()
   def self.all()
     sql = "SELECT * FROM films"
     film_data = SqlRunner.run(sql)
+    result = film_data.map { |film| Film.new( film ) }
+    return result
+  end
+
+  def self.map_items(film_data)
     result = film_data.map { |film| Film.new( film ) }
     return result
   end
